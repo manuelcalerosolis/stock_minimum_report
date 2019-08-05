@@ -13,7 +13,7 @@
                 <group>
                     <group>
                         <field name="warehouse_option" widget="radio" attrs="{'required': True}"/>
-                        <field name="warehouse_id" widget="selection" attrs="{'required': [('warehouse_option', '=', '2')], 'invisible': [('warehouse_option', '=', '1')]}"/>
+                        <field name="warehouse_selected" widget="selection" attrs="{'required': [('warehouse_option', '=', '2')], 'invisible': [('warehouse_option', '=', '1')]}"/>
                     </group>
                 </group>
                 <footer>
@@ -31,6 +31,7 @@
         <field name="view_mode">form</field>
         <field name="view_id" ref="report_stock_minimum_wizard_view"/>
         <field name="target">new</field>
+        <field name="context">{'warehouse_selected': 0, 'valuation': True}</field>
     </record>
     
     <menuitem id="menu_action_report_stock_minimum_wizard" 
@@ -47,8 +48,8 @@
         <field name="arch" type="xml">
 
             <field name="product_id" position="after">
+                <field name="warehouse_name"/>
                 <field name="qty_available"/>
-                <field name="under_minimum" invisible="1"/>
             </field>
 
         </field>

@@ -9,7 +9,7 @@
 
 import logging
 
-from odoo import models, fields, api,_
+from odoo import models, fields, api, _
 
 
 class Orderpoint(models.Model):
@@ -18,7 +18,9 @@ class Orderpoint(models.Model):
     qty_available = fields.Float(related='product_id.qty_available')
 
     under_minimum = fields.Boolean(compute='_compute_under_minimum', string='Under Minimum', store=True,
-                              help='This value is given by the rest of quantity available and minimum quantity.')
+                                   help='This value is true if quantity available is under minimum quantity.')
+
+    warehouse_name = fields.Char(related='warehouse_id.name')
 
     @api.one
     def _compute_under_minimum(self):
