@@ -1,15 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    ODOO, Open Source Management Solution
-#    Copyright (C) 2016 Steigend IT Solutions
-#    For more details, check COPYRIGHT and LICENSE files
-#
-##############################################################################
 
-import logging
-
-from odoo import models, fields, api,_
+from odoo import models, fields, api, _
 
 
 class WizardReportStockMinimum(models.TransientModel):
@@ -20,7 +11,6 @@ class WizardReportStockMinimum(models.TransientModel):
         ('1', 'All warehouses'),
         ('2', 'Specific warehouse')
     ], 'Show: ', default='1', required=True)
-
     warehouse_selected = fields.Many2one('stock.warehouse', 'Warehouse')
 
     def _get_domain(self):
@@ -31,11 +21,8 @@ class WizardReportStockMinimum(models.TransientModel):
 
     def run_wizard(self):
         self.ensure_one()
-
         tree_view_id = self.env.ref('stock_minimum_report.view_minimum_warehouse_orderpoint_tree').id
-        # We pass `warehouse_selected` in the context so that `qty_available` will be computed across
-
-        action = {
+        return {
             'type': 'ir.actions.act_window',
             'views': [(tree_view_id, 'tree')],
             'view_mode': 'tree',
@@ -43,5 +30,3 @@ class WizardReportStockMinimum(models.TransientModel):
             'res_model': 'stock.warehouse.orderpoint',
             'domain': self._get_domain(),
         }
-
-        return action

@@ -30,8 +30,6 @@
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="report_stock_minimum_wizard_view"/>
-        <field name="target">new</field>
-        <field name="context">{'warehouse_selected': 0, 'valuation': True}</field>
     </record>
     
     <menuitem id="menu_action_report_stock_minimum_wizard" 
