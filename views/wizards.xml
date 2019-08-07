@@ -29,6 +29,7 @@
         <field name="res_model">wizard.report.stock.minimum</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
+        <field name="target">new</field>
         <field name="view_id" ref="report_stock_minimum_wizard_view"/>
     </record>
     
